@@ -28,33 +28,48 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| fullname           | string | null: false |
-| date_of_birth      | string | null: false |
+| Column                    | Type   | Options                        |
+| ------------------        | ------ | -----------                    |
+| nickname                  | string | null: false                    |
+| email                     | string | null: false, foreign_key: true |
+| encrypted_password        | string | null: false                    |
+| encrypted_password_digest | string | null: false                    |
+| first_name                | string | null: false                    |
+| last_name                 | string | null: false                    |
+| first_name_kana           | string | null: false                    |
+| last_name_kana            | string | null: false                    |
+| date                      | string | null: false                    |
 
 ### Association
 
--has_many :items_users
+-belongs_to :items_users
 -has_many :items, through: :items_users
 -has_many :comments
 
+## item_users テーブル
+
+| Column    | Type       | Options                        |
+| ------    | ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
+
+### Association
+
+-belongs_to :room
+-belongs_to :user
+
 ## items テーブル
 
-| Column           | Type       | Options     |
-| ------           | ------     | ----------- |
-| image            |            |             |
-| item_name        | string     | null: false |
-| description      | text       | null: false |
-| category         | string     | null: false |
-| condition        | text       | null: false |
-| shipping_costs   | string     | null: false |
-| area             | string     | null: false |
-| days             | string     | null: false |
-| price            | string     | null: false |
+| Column            | Type       | Options     |
+| ------            | ------     | ----------- |
+| item_name         | string     | null: false |
+| description       | text       | null: false |
+| category_id       | integer    | null: false |
+| condition_id      | integer    | null: false |
+| shipping_costs_id | integer    | null: false |
+| area_id           | integer    | null: false |
+| days_id           | integer    | null: false |
+| price             | integer    | null: false |
 
 ### Association
 
@@ -80,14 +95,11 @@ Things you may want to cover:
 
 | Column                 | Type       | Options     |
 | ------                 | ------     | ----------- |
-| credit_card_infomation | string     | null: false |
-| date_of_expiry         | string     | null: false |
-| security_code          | string     | null: false |
 | postal_code            | string     | null: false |
-| prefectures            | string     | null: false |
+| area                   | string     | null: false |
 | municipalities         | string     | null: false |
 | address                | string     | null: false |
-| building_name          | string     | null: false |
+| building_name          | string     |             |
 | telephone_number       | string     | null: false |
 
 ### Association
