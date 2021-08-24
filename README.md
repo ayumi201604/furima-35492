@@ -33,18 +33,13 @@ Things you may want to cover:
 | nickname                  | string | null: false                    |
 | email                     | string | null: false, foreign_key: true |
 | encrypted_password        | string | null: false                    |
-| encrypted_password_digest | string | null: false                    |
 | first_name                | string | null: false                    |
 | last_name                 | string | null: false                    |
 | first_name_kana           | string | null: false                    |
 | last_name_kana            | string | null: false                    |
-| date                      | string | null: false                    |
+| date                      | date   | null: false                    |
 
 ### Association
-
--belongs_to :items_users
--has_many :items, through: :items_users
--has_many :comments
 
 ## item_users テーブル
 
@@ -60,47 +55,29 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column            | Type       | Options     |
-| ------            | ------     | ----------- |
-| item_name         | string     | null: false |
-| description       | text       | null: false |
-| category_id       | integer    | null: false |
-| condition_id      | integer    | null: false |
-| shipping_costs_id | integer    | null: false |
-| area_id           | integer    | null: false |
-| days_id           | integer    | null: false |
-| price             | integer    | null: false |
+| Column            | Type       | Options                        |
+| ------            | ------     | -----------                    |
+| item_name         | string     | null: false                    |
+| description       | text       | null: false                    |
+| category_id       | integer    | null: false                    |
+| condition_id      | integer    | null: false                    |
+| shipping_costs_id | integer    | null: false                    |
+| area_id           | integer    | null: false, foreign_key: true |
+| days_id           | integer    | null: false, foreign_key: true |
+| price             | integer    | null: false, foreign_key: true |
 
 ### Association
-
--has_many :items_users
--has_many :items, through: :items_users
--has_many :comments
-
-## comments テーブル
-
-| Column             | Type       | Options     |
-| ------------------ | ------     | ----------- |
-| nickname           | string     | null: false |
-| text               | text       | null: false |
-| user               | references |             |
-| item               | references |             |
-
-### Association
-
--belongs_to :items
--belongs_to :user
 
 ## buys テーブル
 
-| Column                 | Type       | Options     |
-| ------                 | ------     | ----------- |
-| postal_code            | string     | null: false |
-| area                   | string     | null: false |
-| municipalities         | string     | null: false |
-| address                | string     | null: false |
-| building_name          | string     |             |
-| telephone_number       | string     | null: false |
+| Column                 | Type       | Options                         |
+| ------                 | ------     | -----------                     |
+| postal_code            | string     | null: false                     |
+| area_id                | integer    | null: false, foreign_key: true  |
+| municipalities         | string     | null: false                     |
+| address                | string     | null: false                     |
+| building_name          | string     |                                 |
+| telephone_number       | string     | null: false                     |
 
 ### Association
 
