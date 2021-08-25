@@ -41,8 +41,7 @@ Things you may want to cover:
 
 ### Association
 
--belongs_to :items_users
--has_many :items, through: :items_users
+-has_many :users, through: :items_users
 
 ## item_users テーブル
 
@@ -55,6 +54,7 @@ Things you may want to cover:
 
 -belongs_to :room
 -belongs_to :user
+-has_one :buys
 
 ## items テーブル
 
@@ -84,7 +84,8 @@ Things you may want to cover:
 | address                | string     | null: false, foreign_key: true  |
 | building_name          | string     | foreign_key: true               |
 | telephone_number       | string     | null: false, foreign_key: true  |
-
+| user_id                | references | null: false, foreign_key: true  |
+| item_id                | references | null: false, foreign_key: true  |
 ### Association
 
--has_one :item_users
+-belongs_to :item_users
