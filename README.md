@@ -42,17 +42,17 @@ Things you may want to cover:
 ### Association
 
 -has_many :users, through: :items_users
+-has_many :items, through: :items_users
 
 ## item_users テーブル
 
 | Column    | Type       | Options                        |
 | ------    | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
 
--belongs_to :room
 -belongs_to :user
 -has_one :buys
 
@@ -68,11 +68,12 @@ Things you may want to cover:
 | area_id           | integer    | null: false                    |
 | days_id           | integer    | null: false,                   |
 | price             | integer    | null: false,                   |
+| users             | references | null: false, foreign_key: true |
 
 ### Association
 
--has_many :items_users
--has_many :items, through: :items_users
+-belongs_to :item_users
+-has_many :buys, through: :users
 
 ## buys テーブル
 
@@ -84,8 +85,7 @@ Things you may want to cover:
 | address                | string     | null: false, foreign_key: true  |
 | building_name          | string     | foreign_key: true               |
 | telephone_number       | string     | null: false, foreign_key: true  |
-| user_id                | references | null: false, foreign_key: true  |
-| item_id                | references | null: false, foreign_key: true  |
+| item_users             | references | null: false, foreign_key: true  |
 ### Association
 
 -belongs_to :item_users
