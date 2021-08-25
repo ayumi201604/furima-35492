@@ -37,9 +37,12 @@ Things you may want to cover:
 | last_name                 | string | null: false                    |
 | first_name_kana           | string | null: false                    |
 | last_name_kana            | string | null: false                    |
-| date                      | date   | null: false                    |
+| birth_day                 | date   | null: false                    |
 
 ### Association
+
+-belongs_to :items_users
+-has_many :items, through: :items_users
 
 ## item_users テーブル
 
@@ -61,25 +64,27 @@ Things you may want to cover:
 | description       | text       | null: false                    |
 | category_id       | integer    | null: false                    |
 | condition_id      | integer    | null: false                    |
-| shipping_costs_id | integer    | null: false                    |
-| area_id           | integer    | null: false, foreign_key: true |
-| days_id           | integer    | null: false, foreign_key: true |
-| price             | integer    | null: false, foreign_key: true |
+| shipping_costs_id | integer    | null: false  foreign_key: true |
+| area_id           | integer    | null: false                    |
+| days_id           | integer    | null: false,                   |
+| price             | integer    | null: false,                   |
 
 ### Association
+
+-has_many :items_users
+-has_many :items, through: :items_users
 
 ## buys テーブル
 
 | Column                 | Type       | Options                         |
 | ------                 | ------     | -----------                     |
 | postal_code            | string     | null: false                     |
-| area_id                | integer    | null: false, foreign_key: true  |
-| municipalities         | string     | null: false                     |
-| address                | string     | null: false                     |
-| building_name          | string     |                                 |
-| telephone_number       | string     | null: false                     |
+| area_id                | integer    | null: false                     |
+| municipalities         | string     | null: false, foreign_key: true  |
+| address                | string     | null: false, foreign_key: true  |
+| building_name          | string     | foreign_key: true               |
+| telephone_number       | string     | null: false, foreign_key: true  |
 
 ### Association
 
--has_one :item
--belongs_to :user
+-has_one :item_users
