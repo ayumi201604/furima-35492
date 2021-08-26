@@ -31,7 +31,7 @@ Things you may want to cover:
 | Column                    | Type   | Options                        |
 | ------------------        | ------ | -----------                    |
 | nickname                  | string | null: false                    |
-| email                     | string | null: false, foreign_key: true |
+| email                     | string | null: false                    |
 | encrypted_password        | string | null: false                    |
 | first_name                | string | null: false                    |
 | last_name                 | string | null: false                    |
@@ -41,8 +41,8 @@ Things you may want to cover:
 
 ### Association
 
--has_many :users, through: :items_users
--has_many :items, through: :items_users
+-has_many :users
+-has_many :items
 
 ## item_users テーブル
 
@@ -64,11 +64,11 @@ Things you may want to cover:
 | description       | text       | null: false                    |
 | category_id       | integer    | null: false                    |
 | condition_id      | integer    | null: false                    |
-| shipping_costs_id | integer    | null: false  foreign_key: true |
+| shipping_costs_id | integer    | null: false                    |
 | area_id           | integer    | null: false                    |
 | days_id           | integer    | null: false,                   |
 | price             | integer    | null: false,                   |
-| users             | references | null: false, foreign_key: true |
+| user              | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -81,10 +81,10 @@ Things you may want to cover:
 | ------                 | ------     | -----------                     |
 | postal_code            | string     | null: false                     |
 | area_id                | integer    | null: false                     |
-| municipalities         | string     | null: false, foreign_key: true  |
-| address                | string     | null: false, foreign_key: true  |
+| municipalities         | string     | null: false,                    |
+| address                | string     | null: false,                    |
 | building_name          | string     | foreign_key: true               |
-| telephone_number       | string     | null: false, foreign_key: true  |
+| telephone_number       | string     | null: false,                    |
 | item_users             | references | null: false, foreign_key: true  |
 ### Association
 
