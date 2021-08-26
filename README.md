@@ -31,7 +31,7 @@ Things you may want to cover:
 | Column                    | Type   | Options                        |
 | ------------------        | ------ | -----------                    |
 | nickname                  | string | null: false                    |
-| email                     | string | null: false                    |
+| email                     | string | null: false, unique:true       |
 | encrypted_password        | string | null: false                    |
 | first_name                | string | null: false                    |
 | last_name                 | string | null: false                    |
@@ -41,8 +41,8 @@ Things you may want to cover:
 
 ### Association
 
--has_many :users
 -has_many :items
+-has_many :item_users
 
 ## item_users テーブル
 
@@ -54,7 +54,8 @@ Things you may want to cover:
 ### Association
 
 -belongs_to :user
--has_one :buys
+-belongs_to :item
+-belongs_to :buy
 
 ## items テーブル
 
@@ -64,16 +65,15 @@ Things you may want to cover:
 | description       | text       | null: false                    |
 | category_id       | integer    | null: false                    |
 | condition_id      | integer    | null: false                    |
-| shipping_costs_id | integer    | null: false                    |
+| shipping_cost _id | integer    | null: false                    |
 | area_id           | integer    | null: false                    |
-| days_id           | integer    | null: false,                   |
-| price             | integer    | null: false,                   |
+| day_id            | integer    | null: false                    |
+| price             | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
 
 ### Association
 
--belongs_to :item_users
--has_many :buys, through: :users
+-has_one :item_users
 
 ## buys テーブル
 
@@ -81,11 +81,11 @@ Things you may want to cover:
 | ------                 | ------     | -----------                     |
 | postal_code            | string     | null: false                     |
 | area_id                | integer    | null: false                     |
-| municipalities         | string     | null: false,                    |
-| address                | string     | null: false,                    |
-| building_name          | string     | foreign_key: true               |
-| telephone_number       | string     | null: false,                    |
-| item_users             | references | null: false, foreign_key: true  |
+| municipalities         | string     | null: false                     |
+| address                | string     | null: false                     |
+| building_name          | string     |                                 |
+| telephone_number       | string     | null: false                     |
+| item_user              | references | null: false, foreign_key: true  |
 ### Association
 
--belongs_to :item_users
+-belongs_to :item_user
