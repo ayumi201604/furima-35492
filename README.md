@@ -41,8 +41,8 @@ Things you may want to cover:
 
 ### Association
 
--has_many :items
--has_many :item_users
+- has_many :items
+- has_many :item_users
 
 ## item_users テーブル
 
@@ -53,9 +53,9 @@ Things you may want to cover:
 
 ### Association
 
--belongs_to :user
--belongs_to :item
--belongs_to :buy
+- belongs_to :user
+- belongs_to :item
+- belongs_to :buy
 
 ## items テーブル
 
@@ -65,7 +65,7 @@ Things you may want to cover:
 | description       | text       | null: false                    |
 | category_id       | integer    | null: false                    |
 | condition_id      | integer    | null: false                    |
-| shipping_cost _id | integer    | null: false                    |
+| shipping_cost_id  | integer    | null: false                    |
 | area_id           | integer    | null: false                    |
 | day_id            | integer    | null: false                    |
 | price             | integer    | null: false                    |
@@ -73,7 +73,7 @@ Things you may want to cover:
 
 ### Association
 
--has_one :item_users
+- has_one :item_users
 
 ## buys テーブル
 
@@ -88,4 +88,4 @@ Things you may want to cover:
 | item_user              | references | null: false, foreign_key: true  |
 ### Association
 
--belongs_to :item_user
+- belongs_to :item_user
