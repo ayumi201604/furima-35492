@@ -74,6 +74,7 @@ Things you may want to cover:
 ### Association
 
 - has_one :item_users
+- has_one :users
 
 ## buys テーブル
 
@@ -81,7 +82,7 @@ Things you may want to cover:
 | ------                 | ------     | -----------                     |
 | postal_code            | string     | null: false                     |
 | area_id                | integer    | null: false                     |
-| municipalities         | string     | null: false                     |
+| municipalitie          | string     | null: false                     |
 | address                | string     | null: false                     |
 | building_name          | string     |                                 |
 | telephone_number       | string     | null: false                     |
