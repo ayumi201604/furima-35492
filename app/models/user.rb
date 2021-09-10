@@ -10,12 +10,5 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :items
-  has_many :item_users
-  belongs_to :user
-  belongs_to :item
-  has_one :buy
-  has_one :item_user
-  belongs_to :user
-  belongs_to :item_user
+
 end
