@@ -45,10 +45,11 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Email can't be blank"
     end
     it "重複したemailが存在する場合登録できないこと" do
-      user = create(:user)
-      another_user = build(:user, email: user.email)
+      @user.save
+      another_user = FactoryBot.build(:user)
+      another_user.email = @user.email
       another_user.valid?
-      expect(another_user.errors[:email]).to include("はすでに存在します")
+      expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
     it 'passwordが空では登録できない' do
       @user.password = ""
@@ -58,12 +59,12 @@ RSpec.describe User, type: :model do
     it 'birth_dayが空では登録できない' do
       @user.birth_day = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include "Birth_day can't be blank"
+      expect(@user.errors.full_messages).to include "Birth day can't be blank"
     end
     it 'passwordとpassword_confirmationが不一致では登録できない' do
-    　user = build(:user, encrypted_password: "")
-    　user.valid?
-    　expect(user.errors[:encrypted_password]).to include("を入力してください","は６文字以上で入力してください")
+      @user.password_confirmation = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     it 'passwordが5文字以下では登録できない' do
       @user.password = "00aaa"
@@ -74,7 +75,7 @@ RSpec.describe User, type: :model do
     it "passwordは英数字混合でないと登録できない" do
       @user.password = "000000"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Passwordには英字と数字の両方を含めて設定してください")
+      expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
     end   
   end
  end
