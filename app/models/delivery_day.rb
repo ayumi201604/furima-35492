@@ -7,5 +7,4 @@ class DeliveryDay < ActiveHash::Base
   ]
   include ActiveHash::Associations
   has_many :items
-  validates :delivery_day_id, numericality: { other_than: 1 ,message: "can't be blank"}
 end
