@@ -7,7 +7,8 @@ class Item < ApplicationRecord
   validates :shipping_cost_id, numericality: { other_than: 1 ,message: "can't be blank"}, presence: true
   validates :area_id, numericality: { other_than: 1 ,message: "can't be blank"}, presence: true
   validates :delivery_day_id, numericality: { other_than: 1 ,message: "can't be blank"}, presence: true
-  validates :price, presence: true
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: "は半角数字のみ設定してください" }, presence: true
+  validates :image, presence: true
   belongs_to_active_hash :area
   belongs_to_active_hash :category
   belongs_to_active_hash :condition
