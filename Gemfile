@@ -58,7 +58,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development do
   gem 'rubocop', require: false
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 gem 'devise'
 gem 'pry-rails'
+gem 'active_hash'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'

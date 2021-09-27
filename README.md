@@ -67,7 +67,7 @@ Things you may want to cover:
 | condition_id      | integer    | null: false                    |
 | shipping_cost_id  | integer    | null: false                    |
 | area_id           | integer    | null: false                    |
-| day_id            | integer    | null: false                    |
+| delivery_day_id   | integer    | null: false                    |
 | price             | integer    | null: false                    |
 | user              | references | null: false, foreign_key: true |
 
