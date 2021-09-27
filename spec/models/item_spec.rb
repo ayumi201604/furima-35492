@@ -51,7 +51,7 @@ RSpec.describe Item, type: :model do
     it 'priceは半角数字以外では登録できない' do
       @item.price = "２２２"
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price は半角数字のみ設定してください")
+      expect(@item.errors.full_messages).to include("Price は300円〜9999999円の範囲で設定してください")
     end
     it "imageが空では登録できない" do
       @item.image = nil
@@ -67,6 +67,16 @@ RSpec.describe Item, type: :model do
       @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price は300円〜9999999円の範囲で設定してください")
+    end
+    it "priceが空では登録できない" do
+      @item.price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price は300円〜9999999円の範囲で設定してください")
+    end
+    it 'userが紐付いていないと出品できないこと' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
     end
   end 
  end
