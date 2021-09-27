@@ -12,10 +12,18 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
-    else
+     else
       render :new
     end
   end
+
+  # #def update
+  #   if current_user.update(item_params)
+  #     redirect_to root_path
+  #    else
+  #     render :edit
+  #   end
+  # end
 
   private
   def item_params
