@@ -9,11 +9,12 @@ const pay = () => {
     const formData = new FormData(formResult);
 
     const card = {
-      number: formData.get("number"),
-      cvc: formData.get("cvc"),
-      exp_month: formData.get("exp_month"),
-      exp_year: `20${formData.get("exp_year")}`,
+      number: formData.get("order[number]"),
+      cvc: formData.get("order[cvc]"),
+      exp_month: formData.get("order[exp_month]"),
+      exp_year: `20${formData.get("order[exp_year]")}`,
     };
+    console.log(card)
 
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
@@ -21,13 +22,12 @@ const pay = () => {
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden">`;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
-        console.log(token)
       }
 
-      document.getElementById("card-number").removeAttribute("number");
-      document.getElementById("card-cvc").removeAttribute("cvc");
-      document.getElementById("card-exp-month").removeAttribute("exp_month");
-      document.getElementById("card-exp-year").removeAttribute("exp_year");
+      document.getElementById("card-number").removeAttribute("order[number]");
+      document.getElementById("card-cvc").removeAttribute("order[cvc]");
+      document.getElementById("card-exp-month").removeAttribute("order[exp_month]");
+      document.getElementById("card-exp-year").removeAttribute("order[exp_year]");
     
       document.getElementById("charge-form").submit();
     });
