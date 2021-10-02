@@ -1,6 +1,5 @@
 const pay = () => {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
-  console.log("カード情報トークン化のためのJavaScript");
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -14,7 +13,6 @@ const pay = () => {
       exp_month: formData.get("order[exp_month]"),
       exp_year: `20${formData.get("order[exp_year]")}`,
     };
-    console.log(card)
 
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
@@ -31,7 +29,6 @@ const pay = () => {
     
       document.getElementById("charge-form").submit();
     });
-    console.log("フォーム送信時にイベント発火")
   });
 };
 

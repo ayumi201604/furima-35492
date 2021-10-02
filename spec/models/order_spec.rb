@@ -14,6 +14,7 @@ RSpec.describe Order, type: :model do
     end
 
     it "building_nameが空でも保存できること" do
+      @order.building_name = ''
       expect(@order).to be_valid
     end
 
@@ -66,7 +67,7 @@ RSpec.describe Order, type: :model do
       expect(@order.errors.full_messages).to include("Telephone number can't be blank")
     end
 
-    it "telephone_numberが11桁以上では登録できない" do
+    it "telephone_numberが12桁以上では登録できない" do
       @order.telephone_number = 111111111111
       @order.valid?
       expect(@order.errors.full_messages).to include("Telephone number is invalid")

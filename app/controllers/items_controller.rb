@@ -22,9 +22,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user == @item.user || @item.item_user.present?
+    if current_user != @item.user || @item.item_user.present?
       redirect_to root_path
-   end
+     else
+      render :edit
+    end
   end
 
   def update
