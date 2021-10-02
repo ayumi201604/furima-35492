@@ -72,6 +72,18 @@ RSpec.describe Order, type: :model do
       expect(@order.errors.full_messages).to include("Telephone number is invalid")
     end
 
+    it "telephone_numberが9桁以下では登録できない" do
+      @order.telephone_number = 111111111
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Telephone number is invalid")
+    end
+
+    it "telephone_numberが半角数字以外が含まれている保存ができないこと" do
+      @order.telephone_number = '123456789-g'
+      @order.valid?
+      expect(@order.errors.full_messages).to include("Telephone number is invalid")
+    end
+
     it "user_idが空では保存ができないこと" do
       @order.user_id = nil
       @order.valid?
