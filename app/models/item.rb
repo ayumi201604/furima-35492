@@ -15,5 +15,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
   belongs_to :shipping_cost
   belongs_to :user
+  has_one :item_user
   has_one_attached :image
 end

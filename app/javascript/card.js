@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublicKey("pk_test_1d7870349c3934e2a0fcd3ef");
+  Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   console.log("カード情報トークン化のためのJavaScript");
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
