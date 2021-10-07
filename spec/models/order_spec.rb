@@ -70,13 +70,13 @@ RSpec.describe Order, type: :model do
     it "telephone_numberが12桁以上では登録できない" do
       @order.telephone_number = 111111111111
       @order.valid?
-      expect(@order.errors.full_messages).to include("Telephone number is invalid")
+      expect(@order.errors.full_messages).to include()
     end
 
     it "telephone_numberが9桁以下では登録できない" do
       @order.telephone_number = 111111111
       @order.valid?
-      expect(@order.errors.full_messages).to include("Telephone number is invalid")
+      expect(@order.errors.full_messages).to include()
     end
 
     it "telephone_numberが半角数字以外が含まれている保存ができないこと" do
